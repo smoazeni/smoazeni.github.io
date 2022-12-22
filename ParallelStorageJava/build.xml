@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="DFO">
+	<!-- =================================================================== -->
+	<!-- Initializes the build process                                       -->
+	<!-- =================================================================== -->
+	<target name="init">
+		<!-- Define variables such as directory and file names -->
+		<property name="Root.dir" value=".." />
+		<property name="mpilib.jar" value="c:/mpj-v0_38/lib/mpj.jar" />
+		<property name="DFO.dir" value="${Root.dir}/ParallelStorageJava" />
+		<property name="DFO.bin" value="${DFO.dir}/bin" />
+		<property name="DFO.src" value="${DFO.dir}/" />
+		<property name="CPLEX.dir" value="C:/Program Files/ibm/ILOG/CPLEX_Studio124/cplex" />
+		<property name="DFO.lib" value="${DFO.dir}/lib" />
+		<property name="DFO.jar" value="${DFO.lib}/DFO.jar" />
+		<property name="CPLEX.lib" value="${CPLEX.dir}/lib/cplex.jar" />
+		<property name="MATLAB.lib" value="${DFO.dir}/lib/matlabcontrol.jar" />
+
+		<mkdir dir="${DFO.bin}" />
+		<mkdir dir="${DFO.lib}" />
+	</target>
+	<target depends="init" name="DFO-build">
+		<javac classpath="${CPLEX.lib}; ${mpilib.jar}" debug="on" destdir="${DFO.bin}" includes="**/*.java" optimize="on" srcdir="${DFO.src}" includeantruntime="false"/>
+	</target>
+	<target depends="DFO-build" name="DFO-jar">
+		<jar basedir="${DFO.bin}" jarfile="${DFO.jar}">
+			<include name="**/*.class" />
+			<manifest>
+				<attribute name="Main-class" value="EnergySequential.ParallelAlgoCode" />
+				<attribute name="Class-path" value="mpj.jar" />
+			</manifest>
+		</jar>
+	</target>
+	<target depends="init" name="clean">
+		<delete dir="${DFO.bin}/EnergySequential" />
+		<delete>
+			<fileset defaultexcludes="no" dir="${DFO.dir}" includes="**/*.java~" />
+			<fileset defaultexcludes="no" dir="${DFO.dir}" includes="**/*~" />
+			<fileset defaultexcludes="no" dir="${DFO.lib}" includes="**/DFO.jar" />
+		</delete>
+	</target>
+	<!-- == comment out the next line and comment in the following one to eliminate the UPSFM jar file == -->
+	<target depends="DFO-jar" name="all">
+		<!-- target name="all" depends="fleetmanager-build" -->
+	</target>
+</project>
+

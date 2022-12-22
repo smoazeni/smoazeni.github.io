@@ -1,0 +1,1 @@
+mpjrun.bat -np 6 -Djava.library.path="C:\Program Files\ibm\ILOG\CPLEX_Studio124\cplex\bin\x64_win64" -Xmx2g -cp "C:/Program Files/ibm/ILOG/CPLEX_Studio124/cplex/lib/cplex.jar" -jar C:/Users/somayeh/ParallelStorageJava/lib/DFO.jar  >  Output_parallel.txt
