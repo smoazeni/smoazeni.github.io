@@ -14,6 +14,7 @@
     <p id="zodiac-result"></p>
 
 <script>
+ document.addEventListener("DOMContentLoaded", function () {     
     function calculateZodiacSign() {
         var dob = document.getElementById("dob").value;
         var xhr = new XMLHttpRequest();
@@ -28,7 +29,8 @@
             }
         };
         xhr.send();
-    }
+    }     
+ });   
 </script>
 
 
