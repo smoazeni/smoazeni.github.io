@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zodiac Sign Calculator</title>
+</head>
+<body>
+    <h1>Zodiac Sign Calculator</h1>
+    <form id="zodiac-form">
+        Enter your date of birth: <input type="date" id="dob" required>
+        <button type="button" onclick="calculateZodiacSign()">Calculate</button>
+    </form>
+
+    <p id="zodiac-result"></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function calculateZodiacSign() {
+                var dob = document.getElementById("dob").value;
+
+                // Replace 'https://your-flask-app-url' with the actual URL where your Flask app is hosted
+                fetch("http://127.0.0.1:5000/calculate_zodiac?dob=" + dob)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("zodiac-result").textContent = "Your Zodiac Sign is: " + data.zodiac;
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
