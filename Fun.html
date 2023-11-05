@@ -26,10 +26,10 @@
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var result = JSON.parse(xhr.responseText);
                 console.log("Received response:", result);  
-                
+                document.getElementById("zodiac-result").textContent = "Your Zodiac Sign is: "+ result.zodiac; 
             }
         };
-        document.getElementById("zodiac-result").textContent = "Your Zodiac Sign is: "+ result.zodiac ;  
+         
         xhr.send();
     }     
 
