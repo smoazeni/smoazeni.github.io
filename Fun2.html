@@ -10,24 +10,28 @@
         <button type="button" onclick="calculateZodiacSign()">Calculate</button>
     </form>
 
-    <p id="zodiac-result"></p>
-
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            function calculateZodiacSign() {
-                var dob = document.getElementById("dob").value;
+        function calculateZodiacSign() {
+            var dob = document.getElementById("dob").value;
+            
+            // Replace 'https://your-flask-app-url' with the actual URL where your Flask app is hosted
+            var url = "http://127.0.0.1:5000/calculate_zodiac?dob=" + dob;
+            
+            // Open a new window
+            var newWindow = window.open("", "ZodiacResult", "width=400,height=200");
 
-                // Replace 'https://your-flask-app-url' with the actual URL where your Flask app is hosted
-                fetch("http://127.0.0.1:5000/calculate_zodiac?dob=" + dob)
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById("zodiac-result").textContent = "Your Zodiac Sign is: " + data.zodiac;
-                    })
-                    .catch(error => {
-                        console.error("Error:", error);
-                    });
-            }
-        });
+            // Send a request and display the result in the new window
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var result = JSON.parse(xhr.responseText);
+                    newWindow.document.write("<p>Your Zodiac Sign is: " + result.zodiac + "</p>");
+                }
+            };
+            xhr.send();
+        }
     </script>
 </body>
 </html>
