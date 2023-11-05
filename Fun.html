@@ -13,21 +13,25 @@
 
     <p id="zodiac-result"></p>
 
-    <script>
-        function calculateZodiacSign() {
-            var dob = document.getElementById("dob").value;
-            var xhr = new XMLHttpRequest();
+<script>
+    function calculateZodiacSign() {
+        var dob = document.getElementById("dob").value;
+        var xhr = new XMLHttpRequest();
 
-            xhr.open("GET", "/calculate_zodiac?dob=" + dob, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var result = JSON.parse(xhr.responseText);
-                    document.getElementById("zodiac-result").textContent = "Your Zodiac Sign is: " + result.zodiac;
-                }
-            };
-            xhr.send();
-        }
-    </script>
+        // Replace 'https://your-flask-app-url' with the actual URL where your Flask app is hosted
+        xhr.open("GET", "https://your-flask-app-url/calculate_zodiac?dob=" + dob, true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var result = JSON.parse(xhr.responseText);
+                document.getElementById("zodiac-result").textContent = "Your Zodiac Sign is: " + result.zodiac;
+            }
+        };
+        xhr.send();
+    }
+</script>
+
+
 </body>
 </html>
 
