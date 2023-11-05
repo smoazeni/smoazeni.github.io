@@ -19,7 +19,7 @@
         var xhr = new XMLHttpRequest();
 
         // Replace 'https://your-flask-app-url' with the actual URL where your Flask app is hosted
-        xhr.open("GET", "https://your-flask-app-url/calculate_zodiac?dob=" + dob, true);
+        xhr.open("GET", "http://127.0.0.1:5000/calculate_zodiac?dob=" + dob, true);
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
