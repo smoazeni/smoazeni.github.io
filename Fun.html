@@ -55,8 +55,40 @@
 	<td width="600" valign="top" align="left">
     <h3><a name="Journal Articles">This is just a Fun Application:</a></h3><a name="Journal Articles">
 
+      <!DOCTYPE html>
+<html>
+<head>
+    <title>Zodiac Sign Calculator</title>
+</head>
+<body>
+    <h1>Zodiac Sign Calculator</h1>
+    <form id="zodiac-form">
+        Enter your date of birth: <input type="date" id="dob" required>
+        <button type="button" onclick="calculateZodiacSign()">Calculate</button>
+    </form>
 
-    
+    <p id="zodiac-result"></p>
+
+    <script>
+        function calculateZodiacSign() {
+            var dob = document.getElementById("dob").value;
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "/calculate_zodiac?dob=" + dob, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var result = JSON.parse(xhr.responseText);
+                    document.getElementById("zodiac-result").textContent = "Your Zodiac Sign is: " + result.zodiac;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
+
+
+	    
     	</td>
 	</tr>
 	</tbody>
