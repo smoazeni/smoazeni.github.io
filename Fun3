@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zodiac Sign Calculator</title>
+</head>
+<body>
+    <h1>Zodiac Sign Calculator</h1>
+    <form id="zodiac-form">
+        Enter your date of birth: <input type="date" id="dob" required>
+        <button type="button" onclick="calculateZodiacSign()">Continue</button>
+    </form>
+
+    <p id="zodiac-result"></p>
+
+<script>
+    
+    function calculateZodiacSign() {
+        document.getElementById("zodiac-result").textContent = "Well done";
+    }     
+
+</script>
+
+</body>
+</html>
