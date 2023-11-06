@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zodiac Sign Calculator</title>
+</head>
+<body>
+    <h1>Zodiac Sign Calculator</h1>
+
+    <form id="zodiac-form" action="http://10.105.226.184:5000/calculate_zodiac" method="GET">
+    Enter your date of birth: <input type="date" name="dob" required>
+    <button type="submit">Calculate</button>
+</form>
+
+
+
+    <p id="zodiac-result"></p>
+</body>
+</html>
